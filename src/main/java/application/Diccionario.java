@@ -28,8 +28,8 @@ public class Diccionario {
     }
     
     
-    public void parNuevo(String pal, String tradu){
-        if (! (this.diccio.containsValue(pal)) ) { //si no la contiene, agrego en la lista para no rep
+    public void parNuevo(String pal, String tradu){ //preguntaba si estaba el value, no la key. pero pa1 es key.
+        if (! (this.diccio.containsKey(pal)) ) { //si no la contiene, agrego en la lista para no rep
             
             this.lista.add(pal);
         }
@@ -39,6 +39,9 @@ public class Diccionario {
         
         
     }
+    
+    //iteracion de hashmap a arrayList.
+  
     
     public String getValue(String key){
         return this.diccio.get(key);
@@ -56,13 +59,16 @@ public class Diccionario {
     */
     public boolean veri(String pkey, String pvalue){ // In: palabra, contra.  buscar que exista palabra,contra
         if (this.diccio.containsKey(pkey)){ //si existe key Hola. 
-            String vtradu = this.diccio.get(pkey); // devuelve valor de Hola, Hello
-            if (vtradu.equals(pvalue)){ // si el valor tambien coincide esta bien, Hello
+            String vtradu = this.diccio.get(pkey); // devuelve valor de hola (seria traduccion, hello)
+            if (vtradu.equals(pvalue)){ // si el valor tambien coincide esta bien, Hello == Hello
                 return true;
+            }else{
+                return false; //devuelve falso si no coincide
             }
         }
-        return false;
+        return false; //si no lo contiene devuelve falso tambien
     }
+    
     
     public String sacarPajilla(){
        Random random = new Random();

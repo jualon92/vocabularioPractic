@@ -69,7 +69,7 @@ public class pairing  {
             textPal.clear();
         }else{
             this.diccio.parNuevo(vpal, vtradu);
-            mensaje.setText("Agregado");
+            mensaje.setText("palabra: " + vpal + "\ntraducc: " +  this.diccio.getValue(vpal));
             textTradu.clear();
             textPal.clear();
         }
