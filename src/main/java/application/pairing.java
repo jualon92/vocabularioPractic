@@ -24,27 +24,29 @@ import javafx.scene.Parent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
+import java.util.HashMap;
 
 
 public class pairing  {
-    //referencia a diccionario, para agregar palabras.
     private Diccionario diccio;
-    
+
     public pairing(Diccionario diccio){ // diccionario a utilizar.
         this.diccio = diccio;
+
     }
-    
+
+
     //pairing,getview.  hace ventana de getview a enquistar
     public Parent getView(){
-    Label labelPal = new Label("Palabra");
-    
+        Label labelPal = new Label("Palabra");
+
     TextField textPal = new TextField();
     Label labelTradu = new Label("Traduccion");
     TextField textTradu = new TextField();
     Button botonPares = new Button("Agregar nuevo par de palabras");
     Label mensaje = new Label(""); //mensaje invisible
-    
-    
+
+
     GridPane layout1 = new GridPane();
     layout1.add(labelPal, 0, 0);
     layout1.add(textPal, 0, 1);
@@ -57,14 +59,27 @@ public class pairing  {
     layout1.setVgap(10);
     layout1.setHgap(10);
     layout1.setPadding(new Insets(10,10,10,10)); // camara/ espacio de aire
-    
-    //comportamiento
-    botonPares.setOnAction( (event) -> { 
-        
+
+
+    //comportamiento de agregar pares
+    botonPares.setOnAction( (event) -> {   //
+
         String vpal = textPal.getText();
-        String vtradu = textTradu.getText(); 
-        if (this.diccio.veri(vpal, vtradu)) {
+        String vtradu = textTradu.getText();
+
+
+
+        textTradu.clear();
+        textPal.clear();
+        MapaFrase mapa = new MapaFrase(); // lo agrega al diccio
+        mensaje.setText(mapa.getMensaje(vpal,vtradu,diccio)); //
+        /*
+        if (this.diccio.veri(vpal, vtradu)) { //  no me gusta, polimorfismo buen candidato
             mensaje.setText("Par ya existe!");
+            textTradu.clear();
+            textPal.clear();
+        }else if (vpal.isBlank()){ // si no esta en blanco
+            mensaje.setText("");
             textTradu.clear();
             textPal.clear();
         }else{
@@ -73,6 +88,8 @@ public class pairing  {
             textTradu.clear();
             textPal.clear();
         }
+        */
+
     });
     
     return layout1;

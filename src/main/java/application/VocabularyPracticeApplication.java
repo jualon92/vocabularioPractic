@@ -34,7 +34,8 @@ public class VocabularyPracticeApplication extends Application {
         Button opcionPracti = new Button("Practicar");
         Label contador = new Label("");
         BorderPane layoutSuper = new BorderPane(); //layout superpuesto, impreso arriba de todo
-        
+        Label adv = new Label();
+
         HBox linea = new HBox();
         linea.setPadding(new Insets(10,10,10,10));
         linea.setSpacing(10);
@@ -43,7 +44,8 @@ public class VocabularyPracticeApplication extends Application {
         lineaDer.setPadding(new Insets(10,10,10,10));
         lineaDer.setSpacing(10);
         
-        linea.getChildren().addAll(opcionExpa,opcionPracti); //agrego botones a linea
+        linea.getChildren().addAll(opcionExpa,opcionPracti,adv); //agrego botones a linea
+
         layoutSuper.setTop(linea); // agrego linea a layout parte de arriba
         
       //  layout.setTop(linea);
@@ -53,11 +55,13 @@ public class VocabularyPracticeApplication extends Application {
         //creo sub views
         checking vistachekeo = new checking(diccio); // inic ambas escenas
         pairing vistapares = new pairing(diccio);
-       
+
         //--- 
         layoutSuper.setCenter(vistapares.getView()); // comienza con vista pares
-        
-        Scene escenaNeut = new Scene(layoutSuper, 400, 300); // creo escena con size
+
+
+
+        Scene escenaNeut = new Scene(layoutSuper, 800, 800); // creo escena con size
         
         opcionExpa.setOnAction( (event) -> {  // agrego func a botones para cambiar a escenas
             //cambio view
@@ -65,10 +69,15 @@ public class VocabularyPracticeApplication extends Application {
             // pongo en el medio de layoutSuper a otro taskPane
         });
         
-        opcionPracti.setOnAction( (event) -> { 
-            layoutSuper.setCenter(vistachekeo.getView()); //chequea la palabra
-            //devuelve todo perfecto
-            
+        opcionPracti.setOnAction( (event) -> {
+                try {
+                    adv.setText("");
+                    layoutSuper.setCenter(vistachekeo.getView()); //chequea la palabra
+                }catch (Exception e) {
+                    //layoutSuper.setCenter(vistapares.getView());
+                    adv.setText("diccionario vacio!Agrega palabras");
+                }
+
         });
         
        

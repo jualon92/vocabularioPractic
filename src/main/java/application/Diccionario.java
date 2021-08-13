@@ -32,6 +32,7 @@ public class Diccionario {
         if (! (this.diccio.containsKey(pal)) ) { //si no la contiene, agrego en la lista para no rep
             
             this.lista.add(pal);
+
         }
         
         this.diccio.put(pal, tradu); // en un hashmap no hay repetidos
@@ -57,18 +58,15 @@ public class Diccionario {
         return false;
     }
     */
-    public boolean veri(String pkey, String pvalue){ // In: palabra, contra.  buscar que exista palabra,contra
-        if (this.diccio.containsKey(pkey)){ //si existe key Hola. 
-            String vtradu = this.diccio.get(pkey); // devuelve valor de hola (seria traduccion, hello)
-            if (vtradu.equals(pvalue)){ // si el valor tambien coincide esta bien, Hello == Hello
-                return true;
-            }else{
-                return false; //devuelve falso si no coincide
-            }
-        }
-        return false; //si no lo contiene devuelve falso tambien
+
+
+
+
+
+
+    public boolean veri(String pkey,String pvalue){
+        return (this.diccio.containsKey(pkey) && this.diccio.get(pkey).equals(pvalue)); // podria usarse la entrada del hashmap y equals para probar igualdad.
     }
-    
     
     public String sacarPajilla(){
        Random random = new Random();
